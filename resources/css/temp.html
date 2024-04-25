@@ -1,0 +1,66 @@
+<Layout>
+    <Head><title>Eduket | Allocations</title></Head>
+    <page-header current-page="Class Allocations" page="Allocations"/>
+    <div class="card-box pd-20 height-100-p mb-30">
+
+    </div>
+</Layout>
+
+$terms = Term::select('id','number','calendar_id')->withCount(['calendar as year'=>function($s){
+$s->select('academic');
+}])->get();
+
+<select @change="loadPerformances" class="form-control form-control-sm selectpicker">
+    <option value="" disabled>Term</option>
+    <option v-for="term in terms" :value="term.id">T{{term.number}}-{{term.year}}</option>
+</select>
+
+return inertia('Examinations/GradeBook');
+
+$term = Term::select('number','id','calendar_id');
+
+$term = \request()->t ? $term->find(\request()->t) : $term->first();
+
+<Modal id="exampleModal" :title="" :submit="">
+    <template #body>
+
+    </template>
+    <template #footer>
+        <button type="submit"  class="btn btn-primary"></button>
+    </template>
+</Modal>
+
+<div class="row">
+    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-30">
+        <div class="pd-20 card-box">
+
+        </div>
+    </div>
+    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 mb-30">
+        <div class="card-box">
+            <div class="profile-tab height-100-p">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<pagination :previous-pages="previousPages" :next-pages="nextPages" :data="" ></pagination>
+
+$users->setPath(\request()->fullUrl());
+
+nextPages() {
+if (this.books.next_page_url === null) {
+return;
+}
+
+this.$inertia.get(this.books.next_page_url,{},{preserveState:true,preserveScroll:true})
+},
+
+previousPages() {
+if (this.books.prev_page_url === null) {
+return;
+}
+
+this.$inertia.get(this.books.prev_page_url,{},{preserveState:true,preserveScroll:true})
+},
